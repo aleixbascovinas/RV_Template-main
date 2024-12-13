@@ -7,6 +7,9 @@ public class GameControllerScript : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    [SerializeField] Text scoreText;
+    private int score;
+    
     [SerializeField] Text timerText;
     [SerializeField] float gameTimer = 30.0f;
 
@@ -17,6 +20,8 @@ public class GameControllerScript : MonoBehaviour
     void Start()
     {
         StartCoroutine(SpawnMoles());
+        score = 0;
+        scoreText.text = "" +  score;
     }
 
     IEnumerator SpawnMoles()
@@ -58,7 +63,9 @@ public class GameControllerScript : MonoBehaviour
     public void HitMole(GameObject mole)
     {
         mole.SetActive(false);
-        Debug.Log("Mole hit!");
+        score++;
+        scoreText.text = "" + score;
+        //Debug.Log("Mole hit!");
     }
 
 }
