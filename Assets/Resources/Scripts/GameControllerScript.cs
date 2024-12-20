@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameControllerScript : MonoBehaviour
@@ -17,9 +18,8 @@ public class GameControllerScript : MonoBehaviour
     [SerializeField] float moleActiveTime = 1.5f; 
     [SerializeField] float spawnInterval = 2.0f; 
     private bool gameActive = true;
+    
 
-    public AudioSource audiosource;
-    public AudioClip terra;
 
     void Start()
     {
@@ -63,6 +63,8 @@ public class GameControllerScript : MonoBehaviour
             timerText.text = "Game Over!";
         }
     }
+
+    
 
     public void HitMole(GameObject mole)
     {
