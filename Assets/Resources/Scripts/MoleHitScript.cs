@@ -5,6 +5,10 @@ using UnityEngine;
 public class MoleHitScript : MonoBehaviour
 {
     // Start is called before the first frame update
+    void OnEnable()
+    {
+        print("Nix Mari");
+    }
 
     [SerializeField] GameControllerScript gcScript;
     private void OnMouseDown()

@@ -17,6 +17,10 @@ public class GameControllerScript : MonoBehaviour
     [SerializeField] float moleActiveTime = 1.5f; 
     [SerializeField] float spawnInterval = 2.0f; 
     private bool gameActive = true;
+
+    public AudioSource audiosource;
+    public AudioClip terra;
+
     void Start()
     {
         StartCoroutine(SpawnMoles());
