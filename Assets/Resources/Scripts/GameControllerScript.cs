@@ -10,6 +10,8 @@ public class GameControllerScript : MonoBehaviour
     private int score;
 
     [SerializeField] Text timerText;
+    [SerializeField] Text timerTextExtra;
+
     [SerializeField] float gameTimer = 30.0f;
 
     [SerializeField] GameObject[] moles;
@@ -20,7 +22,6 @@ public class GameControllerScript : MonoBehaviour
 
     void Start()
     {
-        // La partida no empieza automáticamente; se debe llamar a StartGame()
         score = 0;
         UpdateScoreText();
         UpdateTimerText();
@@ -35,7 +36,10 @@ public class GameControllerScript : MonoBehaviour
             gameTimer = 30.0f;
             UpdateScoreText();
             UpdateTimerText();
+            timerTextExtra.gameObject.SetActive(true);
+            timerText.text = gameTimer.ToString("F2");
             StartCoroutine(SpawnMoles());
+
         }
     }
 
@@ -82,6 +86,7 @@ public class GameControllerScript : MonoBehaviour
     {
         gameActive = false;
         timerText.text = "Game Over!";
+        timerTextExtra.gameObject.SetActive(false); 
     }
 
     void UpdateScoreText()
