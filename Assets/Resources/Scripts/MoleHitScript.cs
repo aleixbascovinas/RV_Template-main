@@ -5,9 +5,13 @@ using UnityEngine;
 public class MoleHitScript : MonoBehaviour
 {
     // Start is called before the first frame update
+
+    [SerializeField] AudioSource audioSource;
+    [SerializeField] AudioClip moleHitSound;
+    [SerializeField] AudioClip moleDigSound;
     void OnEnable()
     {
-        print("Nix Mari");
+        audioSource.PlayOneShot(moleDigSound);
     }
 
     [SerializeField] GameControllerScript gcScript;
@@ -24,6 +28,7 @@ public class MoleHitScript : MonoBehaviour
         if (other.CompareTag("hammer"))
         {
             gcScript.HitMole(gameObject);
+            audioSource.PlayOneShot(moleHitSound);
         }
     }
 
