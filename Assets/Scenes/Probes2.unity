@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1163,8 +1163,6 @@ MonoBehaviour:
   - {fileID: 1681583318}
   moleActiveTime: 1.5
   spawnInterval: 2
-  audiosource: {fileID: 0}
-  terra: {fileID: 0}
 --- !u!4 &92957554
 Transform:
   m_ObjectHideFlags: 0

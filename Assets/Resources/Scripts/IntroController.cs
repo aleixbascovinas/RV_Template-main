@@ -18,10 +18,13 @@ public class IntroController : MonoBehaviour
     }
     public void startGame()
     {
-        SceneManager.LoadScene("1");
+        print("Jugar");
+        SceneManager.LoadScene(1);
     }
     public void stopGame()
     {
+        print("Tancar");
         Application.Quit();
+        
     }
 }

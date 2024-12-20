@@ -6,26 +6,37 @@ using UnityEngine.UI;
 
 public class GameControllerScript : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     [SerializeField] Text scoreText;
     private int score;
-    
+
     [SerializeField] Text timerText;
     [SerializeField] float gameTimer = 30.0f;
 
-    [SerializeField] GameObject[] moles; 
-    [SerializeField] float moleActiveTime = 1.5f; 
-    [SerializeField] float spawnInterval = 2.0f; 
-    private bool gameActive = true;
-    
+    [SerializeField] GameObject[] moles;
+    [SerializeField] float moleActiveTime = 1.5f;
+    [SerializeField] float spawnInterval = 2.0f;
 
+    private bool gameActive = false;
 
     void Start()
     {
-        StartCoroutine(SpawnMoles());
+        // La partida no empieza automáticamente; se debe llamar a StartGame()
         score = 0;
-        scoreText.text = "" +  score;
+        UpdateScoreText();
+        UpdateTimerText();
+    }
+
+    public void StartGame()
+    {
+        if (!gameActive)
+        {
+            gameActive = true;
+            score = 0;
+            gameTimer = 30.0f;
+            UpdateScoreText();
+            UpdateTimerText();
+            StartCoroutine(SpawnMoles());
+        }
     }
 
     IEnumerator SpawnMoles()
@@ -49,29 +60,47 @@ public class GameControllerScript : MonoBehaviour
         yield return new WaitForSeconds(moleActiveTime);
         moles[index].SetActive(false);
     }
+
     void Update()
     {
-        
-        gameTimer -= Time.deltaTime;
-        
-        if (gameTimer > 0.0f) {
-            timerText.text = gameTimer.ToString("F2");
-        }
-        else
+        if (gameActive)
         {
-            //Game Over
-            timerText.text = "Game Over!";
+            gameTimer -= Time.deltaTime;
+
+            if (gameTimer > 0.0f)
+            {
+                UpdateTimerText();
+            }
+            else
+            {
+                EndGame();
+            }
         }
     }
 
-    
+    void EndGame()
+    {
+        gameActive = false;
+        timerText.text = "Game Over!";
+    }
+
+    void UpdateScoreText()
+    {
+        scoreText.text = score.ToString();
+    }
+
+    void UpdateTimerText()
+    {
+        timerText.text = gameTimer.ToString("F2");
+    }
 
     public void HitMole(GameObject mole)
     {
-        mole.SetActive(false);
-        score++;
-        scoreText.text = "" + score;
-        //Debug.Log("Mole hit!");
+        if (gameActive)
+        {
+            mole.SetActive(false);
+            score++;
+            UpdateScoreText();
+        }
     }
-
 }
